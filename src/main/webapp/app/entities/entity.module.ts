@@ -7,6 +7,10 @@ import { RouterModule } from '@angular/router';
       {
         path: 'post',
         loadChildren: () => import('./post/post.module').then(m => m.MongoTestPostModule)
+      },
+      {
+        path: 'message',
+        loadChildren: () => import('./message/message.module').then(m => m.MongoTestMessageModule)
       }
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ])

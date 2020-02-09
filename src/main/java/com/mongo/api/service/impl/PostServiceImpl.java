@@ -1,35 +1,30 @@
 package com.mongo.api.service.impl;
 
-import com.mongo.api.service.PostService;
 import com.mongo.api.domain.Post;
 import com.mongo.api.repository.PostRepository;
+import com.mongo.api.service.PostService;
 import com.mongo.api.service.dto.PostDTO;
 import com.mongo.api.service.mapper.PostMapper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
+import java.util.Optional;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 /**
  * Service Implementation for managing {@link Post}.
  */
+@Slf4j
 @Service
+@RequiredArgsConstructor
 public class PostServiceImpl implements PostService {
-
-    private final Logger log = LoggerFactory.getLogger(PostServiceImpl.class);
 
     private final PostRepository postRepository;
 
     private final PostMapper postMapper;
-
-    public PostServiceImpl(PostRepository postRepository, PostMapper postMapper) {
-        this.postRepository = postRepository;
-        this.postMapper = postMapper;
-    }
 
     /**
      * Save a post.
