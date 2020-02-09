@@ -103,7 +103,7 @@ public class AccountResource {
     @GetMapping("/account")
     public UserDTO getAccount() {
         return userService.getUserWithAuthorities()
-            .map(UserDTO::new)
+            .map(UserDTO::toDTO)
             .orElseThrow(() -> new AccountResourceException("User could not be found"));
     }
 

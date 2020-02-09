@@ -43,7 +43,7 @@ public class UserMapperIT {
         user.setImageUrl("image_url");
         user.setLangKey("en");
 
-        userDto = new UserDTO(user);
+        userDto = UserDTO.toDTO(user);
     }
 
     @Test

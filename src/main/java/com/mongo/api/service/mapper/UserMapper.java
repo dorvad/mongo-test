@@ -26,7 +26,7 @@ public class UserMapper {
     }
 
     public UserDTO userToUserDTO(User user) {
-        return new UserDTO(user);
+        return UserDTO.toDTO(user);
     }
 
     public List<User> userDTOsToUsers(List<UserDTO> userDTOs) {

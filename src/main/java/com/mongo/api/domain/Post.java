@@ -1,5 +1,7 @@
 package com.mongo.api.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.io.Serializable;
 
 import javax.validation.constraints.NotNull;
@@ -11,24 +13,38 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 /**
- * An authority (a security role) used by Spring Security.
+ * A Post.
  */
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Document(collection = "post")
 @EqualsAndHashCode(callSuper = true)
-@Document(collection = "jhi_authority")
-public class Authority extends AbstractAuditingEntity implements Serializable {
+public class Post extends AbstractAuditingEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @Id
+    private String id;
+
     @NotNull
-    @Size(max = 50)
-    private String name;
+    @Size(min = 10, max = 50)
+    @Field("title")
+    private String title;
+
+    @Size(max = 1000)
+    @Field("text")
+    private String text;
+
+    @DBRef
+    @Field("author")
+    @JsonIgnoreProperties("posts")
+    private User author;
 
 }
